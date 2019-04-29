@@ -50,7 +50,7 @@ df <- x_train %>%
 
 # This can be achieved by using dplyr's select function
 df <- df %>% 
-  select(subject, activity, contains('mean'), contains('std'))
+  select(subject, activity, contains('-mean'), contains('-std'))
 
 
 # ---------------------------------------------------------------------------
