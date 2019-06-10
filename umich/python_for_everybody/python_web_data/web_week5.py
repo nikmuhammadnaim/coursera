@@ -13,16 +13,17 @@ ctx.verify_mode = ssl.CERT_NONE
 url = input('Enter URL: ')
 print('Retrieving', url)
 
+# Read the data retrieved from the given URL
 my_xml = urlopen(url, context=ctx).read()
 
 print('Retrieved', len(my_xml), 'characters')
+
+# Parse into tags (tree object)
 tree = ET.fromstring(my_xml)
+
+# "//" = Select nodes in the document no matter where
+# "." = Select the current node
 counts = tree.findall('.//count')
 print('Count:', len(counts))
-answer = 0
 
-
-for value in counts:
-    answer += int(value.text)
-
-print('Sum:', answer)
+print('Sum:', sum([int(value.text) for value in counts]))
